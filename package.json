@@ -1,0 +1,30 @@
+{
+  "name": "weather-app-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/server.js",
+  "scripts": {
+    "test": "test",
+    "start": "node ./src/server.js",
+    "dev": "nodemon ./src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OMARVII/weather-app-backend.git"
+  },
+  "author": "Omar Khaled",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OMARVII/weather-app-backend/issues"
+  },
+  "homepage": "https://github.com/OMARVII/weather-app-backend#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^4.2.0"
+  }
+}

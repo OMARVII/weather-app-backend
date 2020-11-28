@@ -3,8 +3,11 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const config = require('./config');
+const connectDB = require('./db');
 
 const app = express();
+
+connectDB();
 
 app.use(express.json());
 

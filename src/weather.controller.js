@@ -4,12 +4,19 @@ const { WeatherService } = require('./weather.service');
 const Weather = require('./weather.model');
 const { response } = require('express');
 
-router.get('/:city', async (req, res) => {
-    let city = (req.params.city.toLowerCase());
-    city = city.charAt(0).toUpperCase() + city.slice(1);
-    console.log(city)
+router.get('/weather', async (req, res) => {
+    const { lat, long } = req.query;
     const date = new Date();
     let result = null;
+
+    if (lat && long) {
+        result = await getWeather('', lat, long, date);
+        res.status(200).send(result);
+    }
+
+    let city = (req.query.city.toLowerCase());
+    city = city.charAt(0).toUpperCase() + city.slice(1);
+
     const weatherForecast = await Weather.find({ city: city });
 
     if (weatherForecast.length) {
@@ -29,10 +36,10 @@ router.get('/:city', async (req, res) => {
     }
 });
 
-const getWeather = async (city, date) => {
+const getWeather = async (city = '', lat = '', long = '', date) => {
 
     try {
-        const forecast = await WeatherService.fetchForecast(city);
+        const forecast = await WeatherService.fetchForecast(city, lat, long);
         if (forecast.cod == '404') {
             return forecast;
         }

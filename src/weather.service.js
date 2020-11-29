@@ -15,8 +15,10 @@ const fetchForecast = async (city, lat, long) => {
         if (response.cod == '404') {
             return response;
         }
+        let city = (response.city.name.toLowerCase());
+        city = city.charAt(0).toUpperCase() + city.slice(1);
         const data = {
-            'city': response.city.name,
+            'city': city,
             'country': response.city.country,
             'list': response.list.map(item => ({
                 'time': new Date(item.dt * 1000),

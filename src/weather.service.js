@@ -7,6 +7,9 @@ const fetchForecast = async (city) => {
             `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${config.OPEN_WEATHER}`
         );
         const response = await weather.json();
+        if (response.cod == '404') {
+            return response;
+        }
         const data = {
             'city': response.city.name,
             'country': response.city.country,

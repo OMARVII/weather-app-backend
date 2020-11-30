@@ -16,7 +16,8 @@ router.get('/weather', async (req, res) => {
     let city = (req.query.city.toLowerCase());
     city = city.charAt(0).toUpperCase() + city.slice(1);
 
-    const weatherForecast = await Weather.find({ city: city });
+    const weatherForecast = await Weather.find({ city: city, 'list.time': { $gte: new Date() } });
+    console.log(weatherForecast[0])
 
     if (weatherForecast.length) {
         result = weatherForecast[0].list.find(item => {

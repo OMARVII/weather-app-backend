@@ -6,7 +6,6 @@ const fetchForecast = async (city, lat, long) => {
     if (lat && long) {
         api = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&units=metric&appid=${config.OPEN_WEATHER}`
     }
-    console.log(api)
     try {
         const weather = await fetch(
             api
